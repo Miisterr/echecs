@@ -1,0 +1,183 @@
+def cases_fou(col,lig):
+    """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer un fou positionné sur la case (col, lig)
+
+    Ex: fou en (2,3) 
+    - - - - - - - - - -
+    |           x     |
+    | x       x       |
+    |   x   x         |
+    |     F           |
+    |   x   x         |
+    | x       x       |
+    |           x     |
+    |             x   |
+    - - - - - - - - - -
+
+    """
+    i=[]
+    c=col
+    l=lig
+    while (l<=7 and c<=7):
+    	i+=[(c,l)]
+    	c+=1
+    	l+=1
+    c=col
+    l=lig
+    while (l>=0 and c<=7):
+    	i+=[(c,l)]
+    	c+=1
+    	l-=1
+    c=col
+    l=lig
+    while (l>=0 and c>=0):
+    	i+=[(c,l)]
+    	c-=1
+    	l-=1
+    c=col
+    l=lig
+    while (l<=7 and c>=0):
+    	i+=[(c,l)]
+    	c-=1
+    	l+=1
+    return i
+
+def cases_tour(col,lig):
+    """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer une tour positionnée sur la case (col, lig)
+
+    Ex: tour en (5,3)
+    - - - - - - - - - -_pycache__
+    |           x     |
+    |           x     |
+    |           x     |
+    | x x x x x T x x |
+    |           x     |
+    |           x     |
+    |           x     |
+    |           x     |
+    - - - - - - - - - -
+
+    """
+    i=[]
+    c=col
+    l=lig
+    while c<=7:
+    	i+=[(c,l)]
+    	c+=1
+    	l+=0
+    c=col
+    l=lig
+    while c>=0:
+    	i+=[(c,l)]
+    	c-=1
+    	l+=0
+    c=col
+    l=lig
+    while l<=7:
+    	i+=[(c,l)]
+    	l+=1
+    	c+=0
+    c=col
+    l=lig
+    while l>=0:
+    	i+=[(c,l)]
+    	l-=1
+    	c+=0
+    return i
+
+def cases_reine(col,lig):
+    """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer un fou positionnée sur la case (col, lig)
+
+    Ex: dame en (6,1)
+    - - - - - - - - - -
+    |           x x x |
+    | x x x x x x D x |
+    |           x x x |
+    |         x   x   |
+    |       x     x   |
+    |     x       x   |
+    |   x         x   |
+    | x           x   |
+    - - - - - - - - - -
+
+    """
+    L=cases_fou(col,lig)
+    L+=cases_tour(col,lig)
+    return L
+def cases_roi(col,lig):
+   """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer un roi positionné sur la case (col, lig)
+
+    Ex: Roi en (4,5)
+    - - - - - - - - - -
+    |                 |
+    |                 |
+    |                 |
+    |                 |
+    |      x x x      |
+    |      x R x      |
+    |      x x x      |
+    |                 |
+    - - - - - - - - - -
+_pycache__
+   """
+   liste=[]
+   c,l=col,lig
+   if l!=7:
+      liste+=[(c,l+1)]
+   if l!=0:
+      liste+=[(c,l-1)]
+   if c!=7:
+      liste+=[(c+1,l)]
+   if c!=0:
+      liste+=[(c-1,l)]
+   if c>0 and l>0:
+      liste+=[(c-1,l-1)]
+   if c<7 and l<7:
+      liste+=[(c+1,l+1)]
+   if c>0 and l<7:
+      liste+=[(c-1,l+1)]
+   if c<7 and l>0:
+      liste+=[(c+1,l-1)]
+   return liste
+
+def cases_cavalier(col,lig):
+    """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer un fou positionné sur la case (col, lig)
+
+    Ex: cavalier en (3,3)
+    - - - - - - - - - -
+    |                 |
+    |     x   x       |
+    |   x       x     |
+    |       C         |
+    |   x       x     |
+    |     x   x       |
+    |                 |
+    |                 |
+    - - - - - - - - - -
+
+    """
+    L=[]
+    return L
+
+def cases_pion(col,lig):
+    """Retourne la liste des indices (col,lig) des cases où peut se
+    déplacer un fou positionné sur la case (col, lig)
+
+    Ex: pions en (1,6) et (5,3)
+    - - - - - - - - - -
+    |                 |
+    |                 |
+    |           x     |
+    |           P     |
+    |   x             |
+    |   x             |
+    |   P             |
+    |                 |
+    - - - - - - - - - -
+
+    """
+    return []
